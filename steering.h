@@ -7,15 +7,23 @@
 
 #include <Arduino.h>
 class steering {
-
+    //value to keep track of steering angle
+    int angle_=90;
+    const int min=75;
+    const int max=105;
 public:
+
     //controls the car driving direction
     //if direction is true then the car move forward
-    drive(int speed,bool direction);
+    void drive(int speed,bool direction);
 
 
     //takes an angle and adjusts the steering accordingly
-    steer(int angle);
+    void steer(int angle);
+
+    int get_angle();
+
+    void set_straight();
 
 };
 

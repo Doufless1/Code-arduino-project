@@ -8,8 +8,9 @@
 
 class obstacle {
 
-        //if an obstacle is detected the value is saved in cm
-        int ob_distance=0;
+    //if an obstacle is detected the value is saved in cm
+    int ob_distance=0;
+public:
 
         //checks if there is an obstacle and returns true if so
         bool is_obstacle();
@@ -18,7 +19,10 @@ class obstacle {
         long get_distance();
 
         //steers car out of obstacle path
-        avoid_obstacle();
+        void avoid_obstacle();  ///dont think i need
+
+
+
 
         //refind_line();
 };

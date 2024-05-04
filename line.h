@@ -9,33 +9,30 @@
 class line {
 #include <Arduino.h>
 
-    struct ir_val{
 
-       bool sensor1=false;
-       bool sensor2=false;
-       bool sensor3=false;
-       bool sensor4=false;
+    struct ir_val{
+       bool sensor1_=false;
+       bool sensor2_=false;
+       bool sensor3_=false;
+       bool sensor4_=false;
 
     }ir_values;
+public:
+    //gets the reading of each irsensor
+    void get_ir_values();
 
     //using ir sensores will retrun true if there is a line and updates the ir sensor array values accordingly
-    bool is_line(bool *ir_values);
+    bool is_line();
 
     //based on ir_values will adjust steering as needed
-    steer_adjust(bool *ir_values);
-
-    //gets the angle of the incline and returns it
-    int get_rise();
-
-    //if the rise angle is over x returns true
-    bool is_ramp(int rise);
-
-    //will adjust speed of the car based on angle
-    int ramp_speed(int rise);
+    void steer_adjust();
 
 
     //when car is at the end of the track retruns true;
-    bool is_end(bool *ir_values);
+    bool is_end();
+
+    //rediscovers the line
+    void search_line();
 
 };
 

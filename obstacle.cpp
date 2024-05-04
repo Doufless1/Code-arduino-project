@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 #include "obstacle.h"
-#include "steering.h"
+
 #include <Arduino.h>
 
 const int trigPin = 9;
@@ -16,15 +16,11 @@ bool obstacle::is_obstacle(){
 
     // no need to update ob_distance here because get_distance already does it
 
-    return distance < 15 ;
+    return distance < 30 ;
 }
 
 void obstacle::avoid_obstacle(){
-    const int speed = 10;
 
-    steering steer;
-    steer.steer(105);
-    steer.drive(speed, true);
 }
 
 long obstacle::get_distance()
