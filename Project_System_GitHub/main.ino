@@ -13,32 +13,35 @@ void setup() {
 
 
 void avoid_stuff(obstacle &o, steering &s, bool direction){
+    //loop makes the car reverse if the obsticle is too close
     while(o.get_distance()<25){
         s.drive(60,!direction);
     }
 
-    s.steer(20);
-    s.drive(60,direction);
+    s.steer(10);
+    //s.drive(60,direction);
     unsigned long start_t=millis();
     unsigned long last_t=0;
 
-    //2 second timer incasee things need to be eddited
-    while(start_t-last_t<3000){
+    //2 seconds timer where car drives away from obstacle
+    while(start_t-last_t<2000){
         last_t=millis();
     }
 
-    s.steer(-20);
+    //set car in direction of line
+    s.set_straight();
+    s.steer(-10);
 
 }
 
 void loop() {
-    line l;
-    obstacle o;
-    steering s;
-    gyro g;
+    static line l;
+    static obstacle o;
+    static steering s;
+    static gyro g;
+
     //code to read the botton
     static bool button_state=false;
-    const int speed=60;
 
 
     if ( digitalRead(button)) button_state=true;
@@ -51,7 +54,8 @@ void loop() {
             //funtion to avoid an obstacle
             avoid_stuff(o,s,true);
         }else if(!l.is_line()){
-            l.steer_adjust();
+            int angle =l.steer_adjust();
+            s.steer(angle);
         }else if(!l.is_line())
 
         //increase speed if ramp is present

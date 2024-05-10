@@ -5,14 +5,13 @@
 #include "line.h"
 #include <Arduino.h>
 
-const int ir1=1,ir2=2,ir3=3,ir4=4 ir5=5;
+int ir1=1,ir2=2,ir3=3,ir4=4;
 
 void line::get_ir_values(){
     ir_values.sensor1_=digitalRead(ir1);
     ir_values.sensor2_=digitalRead(ir2);
     ir_values.sensor3_=digitalRead(ir3);
     ir_values.sensor4_=digitalRead(ir4);
-    ir_values.sensor4_=digitalRead(ir5);
 }
 
 bool line::is_line(){
