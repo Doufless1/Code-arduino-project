@@ -15,6 +15,8 @@ class line {
        bool sensor2_=false;
        bool sensor3_=false;
        bool sensor4_=false;
+       bool sensor5_=false;
+
 
     }ir_values;
 public:

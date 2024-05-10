@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "obstacle.h"
 
-#include <Arduino.h>
+#include <Arduino>
 
 const int trigPin = 9;
 const int echoPin = 10;
