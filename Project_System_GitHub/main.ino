@@ -35,13 +35,13 @@ void avoid_stuff(obstacle &o, steering &s, bool direction){
 }
 
 void loop() {
-    line l;
-    obstacle o;
-    steering s;
-    gyro g;
+    static line l;
+    static obstacle o;
+    static steering s;
+    static gyro g;
+
     //code to read the botton
     static bool button_state=false;
-    const int speed=60;
 
 
     if ( digitalRead(button)) button_state=true;
