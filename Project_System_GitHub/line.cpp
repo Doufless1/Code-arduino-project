@@ -26,8 +26,25 @@ bool line::is_line(){
 }
 
 //based on ir_values will adjust steering as needed
-void line::steer_adjust(){
-    //what the fuck is this shit
+int line::steer_adjust(){
+
+    int right=12,slightRight=6;
+    if (ir_values.sensor3_) { // Center sensor
+        return 0;
+    } else if (ir_values.sensor2_) { // Slightly left
+        return -slightRight;
+    } else if (ir_values.sensor4_) { // Slightly right
+        return slightRight;
+    } else if (ir_values.sensor1_) { // Far left
+        return -right;
+    } else if (ir_values.sensor5_) { // Far right
+        return right;
+    } else {
+        // No line detected or all sensors are off the line
+        return 0;
+        Serial.println("Line Lost, Adjusting");
+    }
+
 }
 
 

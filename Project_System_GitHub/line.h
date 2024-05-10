@@ -27,7 +27,7 @@ public:
     bool is_line();
 
     //based on ir_values will adjust steering as needed
-    void steer_adjust();
+    int steer_adjust();
 
 
     //when car is at the end of the track retruns true;
