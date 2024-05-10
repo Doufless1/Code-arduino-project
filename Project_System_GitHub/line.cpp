@@ -5,18 +5,20 @@
 #include "line.h"
 #include <Arduino.h>
 
-int ir1=1,ir2=2,ir3=3,ir4=4;
+int ir1=1,ir2=2,ir3=3,ir4=4,ir5=5;
 
 void line::get_ir_values(){
     ir_values.sensor1_=digitalRead(ir1);
     ir_values.sensor2_=digitalRead(ir2);
     ir_values.sensor3_=digitalRead(ir3);
     ir_values.sensor4_=digitalRead(ir4);
+    ir_values.sensor5_=digitalRead(ir5);
+
 }
 
 bool line::is_line(){
     get_ir_values();
-    if(ir_values.sensor1_||ir_values.sensor1_||ir_values.sensor3_||ir_values.sensor4_){
+    if(ir_values.sensor1_||ir_values.sensor1_||ir_values.sensor3_||ir_values.sensor4_||ir_values.sensor5_){
         return true;
     }
 
@@ -32,7 +34,7 @@ void line::steer_adjust(){
 //when car is at the end of the track retruns true;
 bool line::is_end(){
     get_ir_values();
-    if(ir_values.sensor1_&&ir_values.sensor1_&&ir_values.sensor3_&&ir_values.sensor4_){
+    if(ir_values.sensor1_&&ir_values.sensor1_&&ir_values.sensor3_&&ir_values.sensor4_&&ir_values.sensor5_){
         return true;
     }
 
