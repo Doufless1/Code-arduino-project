@@ -7,7 +7,8 @@
 #include "Wire.h"
 #include <Arduino.h>
 
-
+const int GYROSCL = SCL;
+const int GYROSDA = SDA;
 ///was not tested
 int gyro::get_rise() {
     Wire.beginTransmission(MPU_ADDR);
