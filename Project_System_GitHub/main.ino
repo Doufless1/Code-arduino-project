@@ -63,7 +63,6 @@ void loop() {
             s.drive(60,direction);
         }else{s.drive(40,direction);}        //else drive default speed
 
-
     }
 
 }

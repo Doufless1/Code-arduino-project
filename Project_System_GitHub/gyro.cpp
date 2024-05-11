@@ -7,8 +7,7 @@
 #include "Wire.h"
 #include <Arduino.h>
 
-const int GYROSCL = SCL;
-const int GYROSDA = SDA;
+const int MPU_ADDR = 0x68;
 ///was not tested
 int gyro::get_rise() {
     Wire.beginTransmission(MPU_ADDR);
@@ -27,8 +26,8 @@ int gyro::get_rise() {
 }
 
 bool gyro::is_ramp() {
-    int min_ramp=60;
-    double pitch =get_rise();
+    int min_ramp = 60; // do some adjustment because the ramp is gonna be 45° or 15°
+    double pitch = get_rise();
     if(pitch>min_ramp){
         return true;
     }

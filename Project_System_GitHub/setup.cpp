@@ -19,5 +19,7 @@ void Setup::initializeSensors() {
     pinMode(echoPin, INPUT);
     pinMode(trigPin, OUTPUT);
     pinMode(BUZZER, OUTPUT);
+    pinMode(RPWM_Output,OUTPUT);
+    pinMode(LPWM_Output,OUTPUT);
 }
 
