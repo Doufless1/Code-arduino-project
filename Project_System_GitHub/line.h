@@ -5,9 +5,9 @@
 #ifndef PROJECT_SYSTEMS_LINE_H
 #define PROJECT_SYSTEMS_LINE_H
 
-
-class line {
 #include <Arduino.h>
+class line {
+
 
 
     struct ir_val{
