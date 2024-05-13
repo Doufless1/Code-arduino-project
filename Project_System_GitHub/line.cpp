@@ -18,7 +18,7 @@ void line::get_ir_values(){
 
 bool line::is_line(){
     get_ir_values();
-    if(ir_values.sensor1_||ir_values.sensor1_||ir_values.sensor3_||ir_values.sensor4_||ir_values.sensor5_){
+    if(ir_values.sensor1_||ir_values.sensor2_||ir_values.sensor3_||ir_values.sensor4_||ir_values.sensor5_){
         return true;
     }
 
