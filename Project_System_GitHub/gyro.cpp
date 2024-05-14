@@ -28,9 +28,6 @@ int gyro::get_rise() {
 bool gyro::is_ramp() {
     int min_ramp = 60; // do some adjustment because the ramp is gonna be 45° or 15°
     double pitch = get_rise();
-    if(pitch>min_ramp){
-        return true;
-    }
-    return false;
+    return pitch>min_ramp;
 }
 

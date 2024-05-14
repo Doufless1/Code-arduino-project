@@ -18,11 +18,7 @@ void line::get_ir_values(){
 
 bool line::is_line(){
     get_ir_values();
-    if(ir_values.sensor1_||ir_values.sensor2_||ir_values.sensor3_||ir_values.sensor4_||ir_values.sensor5_){
-        return true;
-    }
-
-    return false;
+    return(ir_values.sensor1_||ir_values.sensor2_||ir_values.sensor3_||ir_values.sensor4_||ir_values.sensor5_);
 }
 
 //based on ir_values will adjust steering as needed
@@ -47,13 +43,8 @@ int line::steer_adjust(){
 
 }
 
-
-//when car is at the end of the track retruns true;
+//when car is at the end of the track returns true;
 bool line::is_end(){
     get_ir_values();
-    if(ir_values.sensor1_&&ir_values.sensor1_&&ir_values.sensor3_&&ir_values.sensor4_&&ir_values.sensor5_){
-        return true;
-    }
-
-    return false;
+    return (ir_values.sensor1_&&ir_values.sensor1_&&ir_values.sensor3_&&ir_values.sensor4_&&ir_values.sensor5_);
 }
