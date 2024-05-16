@@ -1,3 +1,18 @@
+#ifndef GYROSCOPE_HPP
+#define GYROSCOPE_HPP
+
+class Gyroscope
+{
+	public:
+		Gyroscope();
+	
+	private:
+		gyroscope_;
+};
+
+#endif // GYROSCOPE_HPP
+
+/*
 //
 // Created by onno1 on 01/05/2024.
 //
@@ -20,3 +35,4 @@ public:
 
 
 #endif //PROJECT_SYSTEMS_GYRO_H
+*/

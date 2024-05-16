@@ -1,3 +1,14 @@
+#include "componont/Gyroscope.hpp"
+
+#include <Arduino.h>
+
+Gyroscope::Gyroscope() :
+	gyroscope_{}
+{
+	pinMode(GYRO, INPUT);
+}
+
+/*
 //
 // Created by onno1 on 01/05/2024.
 //
@@ -33,4 +44,4 @@ bool gyro::is_ramp() {
     }
     return false;
 }
-
+*/
