@@ -4,8 +4,12 @@
 class UltraSound
 {
 	public:
-		UltraSound();
+		UltraSound(const int trigPin, const int echoPin);
 		float distance();
+	
+	private:
+		const int trigPin_;
+		const int echoPin_;
 };
 
 

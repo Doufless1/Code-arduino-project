@@ -2,23 +2,21 @@
 
 #include <Arduino.h>
 
-const int trigPin = 9;
-const int echoPin = 8;
-
-UltraSound::UltraSound()
+UltraSound::UltraSound(const int trigPin, const int echoPin) :
+	trigPin_{trigPin}, echoPin_{echoPin}
 {
-	pinMode(echoPin, INPUT);
-	pinMode(trigPin, OUTPUT);
-	digitalWrite(trigPin, LOW);
+	pinMode(echoPin_, INPUT);
+	pinMode(trigPin_, OUTPUT);
+	digitalWrite(trigPin_, LOW);
 }
 
 float UltraSound::distance()
 {
-	digitalWrite(trigPin, HIGH);
+	digitalWrite(trigPin_, HIGH);
 	delayMicroseconds(10);
-	digitalWrite(trigPin, LOW);
+	digitalWrite(trigPin_, LOW);
 
-	long duration_us = pulseIn(echoPin, HIGH);
+	long duration_us = pulseIn(echoPin_, HIGH);
 	float distance_cm = 0.017 * duration_us;
 	return distance_cm;
 }

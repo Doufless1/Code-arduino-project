@@ -1,40 +1,41 @@
-//
-// Created by onno1 on 28/04/2024.
-//
+#incldude "component/Infrared.hpp"
 
-#include "line.h"
 #include <Arduino.h>
 
-int ir1=1,ir2=2,ir3=3,ir4=4;
-
-void line::get_ir_values(){
-    ir_values.sensor1_=digitalRead(ir1);
-    ir_values.sensor2_=digitalRead(ir2);
-    ir_values.sensor3_=digitalRead(ir3);
-    ir_values.sensor4_=digitalRead(ir4);
+Infrared::Infrared(const int far_left_pin,
+		const int left_pin,
+		const int mid_pin,
+		const int right_pin,
+		const int far_right_pin) :
+	far_left_pin_{far_left_pin},
+	left_pin_{left_pin},
+	mid_pin_{mid_pin},
+	right_pin_{right_pin},
+	far_right_pin_{far_right_pin}
+{
+	pinMode(far_left_pin_, INPUT);
+	pinMode(left_pin_, INPUT);
+	pinMode(mid_pin_, INPUT);
+	pinMode(right_pin_, INPUT);
+	pinMode(far_right_pin_, INPUT);
 }
 
-bool line::is_line(){
-    get_ir_values();
-    if(ir_values.sensor1_||ir_values.sensor1_||ir_values.sensor3_||ir_values.sensor4_){
-        return true;
-    }
-
-    return false;
+int Infrared::direction()
+{
+	int flp = digitalRead(far_left_pin_);
+	int lp = digitalRead(left_pin_) << 1;
+	int mp = digitalRead(mid_pin_) << 2;
+	int rp = digitalRead(right_pin_) << 3;
+	int frp = digitalRead(far_right_pin_) << 4;
+	return frp + rp + mp + lp + flp;
 }
 
-//based on ir_values will adjust steering as needed
-void line::steer_adjust(){
-    //what the fuck is this shit
+bool Infrared::one_on()
+{
+	return direction() != 0b00000;
 }
 
-
-//when car is at the end of the track retruns true;
-bool line::is_end(){
-    get_ir_values();
-    if(ir_values.sensor1_&&ir_values.sensor1_&&ir_values.sensor3_&&ir_values.sensor4_){
-        return true;
-    }
-
-    return false;
+bool Infrared::all_on()
+{
+	return direction() == 0b11111;
 }

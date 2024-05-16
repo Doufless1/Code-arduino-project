@@ -1,38 +1,15 @@
-// https://github.com/a9183756-gh/Arduino-CMake-Toolchain
+// TODO Fix and Organise this mess.
+// https://howtomechatronics.com/tutorials/arduino/arduino-and-mpu6050-accelerometer-and-gyroscope-tutorial/
+#include "component/GyroScope.hpp"
 
 #include <Arduino.h>
 #include <Wire.h>
 
-const int L = 8;
-const int M = 9;
-const int R = 10;
-
-void setup() {
-	Serial.begin(9600);
-
-	pinMode(L, INPUT);
-	pinMode(M, INPUT);
-	pinMode(R, INPUT);
-}
-
-void loop() {
-	int l = digitalRead(L);
-	int m = digitalRead(M);
-	int r = digitalRead(R);
-
-	Serial.print(l);
-	Serial.print(" | ");
-	Serial.print(m);
-	Serial.print(" | ");
-	Serial.println(r);
-}
-
-/* TODO GyroScope
- * https://howtomechatronics.com/tutorials/arduino/arduino-and-mpu6050-accelerometer-and-gyroscope-tutorial/
 const int MPU_ADDR = 0x68;
 
 GyroScope::GyroScope()
 {
+	// TODO Be more explicit with A4/A5 pins instead of hardcoding it.
 	const int reg_6B = 0x6B;
 	const int place_0_into_6B = 0x00;
 	Wire.begin();
@@ -42,6 +19,7 @@ GyroScope::GyroScope()
 	Wire.endTransmission(true);
 }
 
+// TODO is a generator necessary?
 void GyroScope::generate()
 {
 	const int reg_3B = 0x3B;
@@ -57,7 +35,6 @@ void GyroScope::generate()
 
 float GyroScope::angle_x()
 {
-	
 }
 
 float GyroScope::angle_y()
@@ -67,4 +44,3 @@ float GyroScope::angle_y()
 float GyroScope::angle_z()
 {
 }
-*/
