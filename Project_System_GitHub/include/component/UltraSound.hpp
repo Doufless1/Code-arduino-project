@@ -5,7 +5,8 @@ class UltraSound
 {
 	public:
 		UltraSound(const int trigPin, const int echoPin);
-		float distance();
+		bool is_obstacle() const;
+		float distance() const;
 	
 	private:
 		const int trigPin_;

@@ -2,29 +2,33 @@
 #define CAR_HPP
 
 #include "component/Button.hpp"
+#include "component/Buzzer.hpp"
 #include "component/GyroScope.hpp"
 #include "component/Infrared.hpp"
-#include "component/Steering.hpp"
+#include "component/Motor.hpp"
+#include "component/SServo.hpp"
 #include "component/UltraSound.hpp"
 
 class Car
 {
 	public:
-		Car(const int button_pin,
-			const int infrared_flpin,
-			const int infrared_lpin,
-			const int infrared_mpin,
-			const int infrared_rpin,
-			const int infrared_frpin,
-			const int ultrasound_trigpin
-			const int ultrasound_echopin);
-		void drive();
+		Car(Button button, Buzzer buzzer, GyroScope gyroscope, Infrared infrared, Motor motor, SServo servo, UltraSound ultrasound);
+
+		Button getButton() const;
+		Buzzer getBuzzer() const;
+		GyroScope getGyroScope() const;
+		Infrared getInfrared() const;
+		Motor getMotor() const;
+		SServo getSServo() const;
+		UltraSound getUltraSound() const;
 
 	private:
 		Button button_;
+		Buzzer buzzer_;
 		GyroScope gyroscope_;
 		Infrared infrared_;
-		Steering steering_;
+		Motor motor_;
+		SServo servo_;
 		UltraSound ultrasound_;
 };
 

@@ -3,14 +3,20 @@
 #include <Arduino.h>
 
 UltraSound::UltraSound(const int trigPin, const int echoPin) :
-	trigPin_{trigPin}, echoPin_{echoPin}
+	trigPin_{trigPin},
+	echoPin_{echoPin}
 {
 	pinMode(echoPin_, INPUT);
 	pinMode(trigPin_, OUTPUT);
 	digitalWrite(trigPin_, LOW);
 }
 
-float UltraSound::distance()
+bool UltraSound::is_obstacle() const
+{
+	return distance() < 30;
+}
+
+float UltraSound::distance() const
 {
 	digitalWrite(trigPin_, HIGH);
 	delayMicroseconds(10);

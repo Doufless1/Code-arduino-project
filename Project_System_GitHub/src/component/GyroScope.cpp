@@ -1,5 +1,3 @@
-// TODO Fix and Organise this mess.
-// https://howtomechatronics.com/tutorials/arduino/arduino-and-mpu6050-accelerometer-and-gyroscope-tutorial/
 #include "component/GyroScope.hpp"
 
 #include <Arduino.h>
@@ -19,28 +17,31 @@ GyroScope::GyroScope()
 	Wire.endTransmission(true);
 }
 
-// TODO is a generator necessary?
 void GyroScope::generate()
 {
 	const int reg_3B = 0x3B;
+	const int reg_request = 7 * 2;
 	Wire.beginTransmission(MPU_ADDR);
 	Wire.write(reg_3B);
 	Wire.endTransmission(false);
-	Wire.requestFrom(MPU_ADDR, 6, true);
+	Wire.requestFrom(MPU_ADDR, reg_request, true);
 
 	accelerometer_x_ = Wire.read() << 8 | Wire.read();
 	accelerometer_y_ = Wire.read() << 8 | Wire.read();
 	accelerometer_z_ = Wire.read() << 8 | Wire.read();
 }
 
-float GyroScope::angle_x()
+int GyroScope::angle_x() const
 {
+	return accelerometer_x_;
 }
 
-float GyroScope::angle_y()
+int GyroScope::angle_y() const
 {
+	return accelerometer_y_;
 }
 
-float GyroScope::angle_z()
+int GyroScope::angle_z() const
 {
+	return accelerometer_z_;
 }
