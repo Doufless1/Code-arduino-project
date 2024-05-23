@@ -10,16 +10,10 @@ Motor::Motor(const int lpwm_pin, const int rpwm_pin) :
 	pinMode(rpwm_pin_, OUTPUT);
 }
 
-void Motor::forwards(int speed) const
+void Motor::move(int speed) const
 {
-	analogWrite(lpwm_pin_, speed);
-	analogWrite(rpwm_pin_, 0);
-}
-
-void Motor::backwards(int speed) const
-{
-	analogWrite(lpwm_pin_, 0);
-	analogWrite(rpwm_pin_, speed);
+	analogWrite(lpwm_pin_, (speed > 0) * speed);
+	analogWrite(rpwm_pin_, (speed < 0) * -speed);
 }
 
 void Motor::stop() const

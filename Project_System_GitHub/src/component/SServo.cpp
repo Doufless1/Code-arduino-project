@@ -10,7 +10,5 @@ SServo::SServo(const int pin) :
 
 void SServo::angle(int angle) const
 {
-	if (angle > 15 || angle < -15)
-		return;
 	servo_.write(90 + angle);
 }

@@ -21,22 +21,29 @@ Infrared::Infrared(
 	pinMode(rright_pin_, INPUT);
 }
 
-int Infrared::direction() const
+int Infrared::middle() const
 {
-	int llp = digitalRead(lleft_pin_);
-	int lp = digitalRead(left_pin_) << 1;
-	int mp = digitalRead(mid_pin_) << 2;
-	int rp = digitalRead(right_pin_) << 3;
-	int rrp = digitalRead(rright_pin_) << 4;
-	return rrp | rp | mp | lp | llp;
+	int mp = digitalRead(mid_pin_);
+	return mp;
 }
 
-bool Infrared::one_on() const
+int Infrared::direction(const int slight, const int far) const
 {
-	return direction() != 0b00000;
+	int llp = digitalRead(lleft_pin_);
+	int lp = digitalRead(left_pin_);
+	int rp = digitalRead(right_pin_);
+	int rrp = digitalRead(rright_pin_);
+	return rrp * (-1) * far +
+		rp * (-1) * slight +
+		lp * slight +
+		llp * far;
 }
 
 bool Infrared::all_on() const
 {
-	return direction() == 0b11111;
+	int llp = digitalRead(lleft_pin_);
+	int lp = digitalRead(left_pin_);
+	int rp = digitalRead(right_pin_);
+	int rrp = digitalRead(rright_pin_);
+	return llp + lp + rp + rrp == 4;
 }

@@ -10,8 +10,8 @@ class Infrared
 			const int right_pin,
 			const int rright_pin);
 
-		int direction() const;
-		bool one_on() const;
+		int middle() const;
+		int direction(const int slight, const int far) const;
 		bool all_on() const;
 	
 	private:

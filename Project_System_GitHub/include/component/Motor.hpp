@@ -6,8 +6,7 @@ class Motor
 	public:
 		Motor(const int lpwm_pin, const int rpwm_pin);
 
-		void Motor::forwards(int speed) const;
-		void Motor::backwards(int speed) const;
+		void Motor::move(int speed) const;
 		void Motor::stop() const;
 	
 	private:
