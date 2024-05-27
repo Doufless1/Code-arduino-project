@@ -5,7 +5,7 @@
 Button::Button(const int pin) :
 	pin_{pin}
 {
-	pinMode(pin_, INPUT);
+	if (pin_ != 0) pinMode(pin_, INPUT);
 }
 
 bool Button::pressed()

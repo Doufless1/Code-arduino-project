@@ -6,16 +6,7 @@ class GyroScope
 	public:
 		GyroScope();
 
-		void GyroScope::generate();
-
-		int GyroScope::angle_x() const;
-		int GyroScope::angle_y() const;
-		int GyroScope::angle_z() const;
-	
-	private:
-		int accelerometer_x_;
-		int accelerometer_y_;
-		int accelerometer_z_;
+		void GyroScope::generate(const int A4, const int A5);
 };
 
 #endif // COMPONENT_GYROSCOPE_HPP

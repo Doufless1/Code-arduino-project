@@ -5,7 +5,7 @@ class Buzzer
 {
 	public:
 		Buzzer(const int pin);
-		void play() const;
+		void play(const int note, const int duration) const;
 	
 	private:
 		const int pin_;

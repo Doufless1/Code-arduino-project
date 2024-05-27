@@ -8,12 +8,8 @@ UltraSound::UltraSound(const int trigPin, const int echoPin) :
 {
 	pinMode(echoPin_, INPUT);
 	pinMode(trigPin_, OUTPUT);
-	digitalWrite(trigPin_, LOW);
-}
 
-bool UltraSound::is_obstacle() const
-{
-	return distance() < 30;
+	digitalWrite(trigPin_, LOW);
 }
 
 float UltraSound::distance() const

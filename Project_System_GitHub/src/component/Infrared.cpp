@@ -2,48 +2,35 @@
 
 #include <Arduino.h>
 
-Infrared::Infrared(
-		const int lleft_pin,
-		const int left_pin,
-		const int mid_pin,
-		const int right_pin,
-		const int rright_pin) :
-	lleft_pin_{lleft_pin},
-	left_pin_{left_pin},
-	mid_pin_{mid_pin},
-	right_pin_{right_pin},
-	rright_pin_{rright_pin}
+Infrared::Infrared(const int far_left_pin,
+		const int slight_left_pin,
+		const int middle_pin,
+		const int slight_right_pin,
+		const int far_right_pin) :
+	far_left_pin_    {far_left_pin}    ,
+	slight_left_pin_ {slight_left_pin} ,
+	middle_pin_      {middle_pin}      ,
+	slight_right_pin_{slight_right_pin},
+	far_right_pin_   {far_right_pin}
 {
-	pinMode(lleft_pin_, INPUT);
-	pinMode(left_pin_, INPUT);
-	pinMode(mid_pin_, INPUT);
-	pinMode(right_pin_, INPUT);
-	pinMode(rright_pin_, INPUT);
+	if (far_left_pin_     != 0) pinMode(far_left_pin_    , INPUT);
+	if (slight_left_pin_  != 0) pinMode(slight_left_pin_ , INPUT);
+	if (middle_pin_       != 0) pinMode(middle_pin_      , INPUT);
+	if (slight_right_pin_ != 0) pinMode(slight_right_pin_, INPUT);
+	if (far_right_pin_    != 0) pinMode(far_right_pin_   , INPUT);
 }
 
-int Infrared::middle() const
+int Infrared::direction() const
 {
-	int mp = digitalRead(mid_pin_);
-	return mp;
-}
+	int far_left_pin     = digitalRead(far_left_pin_)     << 0;
+	int slight_left_pin  = digitalRead(slight_left_pin_)  << 1;
+	int middle_pin       = digitalRead(middle_pin_)       << 2;
+	int slight_right_pin = digitalRead(slight_right_pin_) << 3;
+	int far_right_pin    = digitalRead(far_right_pin_)    << 4;
 
-int Infrared::direction(const int slight, const int far) const
-{
-	int llp = digitalRead(lleft_pin_);
-	int lp = digitalRead(left_pin_);
-	int rp = digitalRead(right_pin_);
-	int rrp = digitalRead(rright_pin_);
-	return rrp * (-1) * far +
-		rp * (-1) * slight +
-		lp * slight +
-		llp * far;
-}
-
-bool Infrared::all_on() const
-{
-	int llp = digitalRead(lleft_pin_);
-	int lp = digitalRead(left_pin_);
-	int rp = digitalRead(right_pin_);
-	int rrp = digitalRead(rright_pin_);
-	return llp + lp + rp + rrp == 4;
+	return     far_right_pin |
+		slight_right_pin |
+		      middle_pin |
+		 slight_left_pin |
+		    far_left_pin ;
 }

@@ -6,7 +6,7 @@ add_executable(${PROJECT_NAME}
 	src/Car.cpp
 	src/component/Button.cpp
 	src/component/Buzzer.cpp
-	src/component/GyroScope.cpp
+	#src/component/GyroScope.cpp
 	src/component/Infrared.cpp
 	src/component/Motor.cpp
 	src/component/SServo.cpp

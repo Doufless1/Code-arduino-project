@@ -7,7 +7,6 @@ class Motor
 		Motor(const int lpwm_pin, const int rpwm_pin);
 
 		void Motor::move(int speed) const;
-		void Motor::stop() const;
 	
 	private:
 		const int lpwm_pin_;

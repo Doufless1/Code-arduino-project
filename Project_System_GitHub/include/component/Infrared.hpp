@@ -10,16 +10,14 @@ class Infrared
 			const int right_pin,
 			const int rright_pin);
 
-		int middle() const;
-		int direction(const int slight, const int far) const;
-		bool all_on() const;
+		int direction() const;
 	
 	private:
-		const int lleft_pin_;
-		const int left_pin_;
-		const int mid_pin_;
-		const int right_pin_;
-		const int rright_pin_;
+		const int far_left_pin_    ;
+		const int slight_left_pin_ ;
+		const int middle_pin_      ;
+		const int slight_right_pin_;
+		const int far_right_pin_   ;
 };
 
 #endif // COMPONENT_INFRARED_HPP

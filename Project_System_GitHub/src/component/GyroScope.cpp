@@ -5,9 +5,11 @@
 
 const int MPU_ADDR = 0x68;
 
-GyroScope::GyroScope()
+GyroScope::GyroScope(const int A4, const int A5)
 {
-	// TODO Be more explicit with A4/A5 pins instead of hardcoding it.
+	(void) A4;
+	(void) A5;
+
 	const int reg_6B = 0x6B;
 	const int place_0_into_6B = 0x00;
 	Wire.begin();
@@ -17,7 +19,7 @@ GyroScope::GyroScope()
 	Wire.endTransmission(true);
 }
 
-void GyroScope::generate()
+const double GyroScope::angle() const
 {
 	const int reg_3B = 0x3B;
 	const int reg_request = 7 * 2;
@@ -26,22 +28,11 @@ void GyroScope::generate()
 	Wire.endTransmission(false);
 	Wire.requestFrom(MPU_ADDR, reg_request, true);
 
-	accelerometer_x_ = Wire.read() << 8 | Wire.read();
-	accelerometer_y_ = Wire.read() << 8 | Wire.read();
-	accelerometer_z_ = Wire.read() << 8 | Wire.read();
-}
+	const int x = Wire.read() << 8 | Wire.read();
+	const int y = Wire.read() << 8 | Wire.read();
+	const int z = Wire.read() << 8 | Wire.read();
 
-int GyroScope::angle_x() const
-{
-	return accelerometer_x_;
-}
-
-int GyroScope::angle_y() const
-{
-	return accelerometer_y_;
-}
-
-int GyroScope::angle_z() const
-{
-	return accelerometer_z_;
+	// TODO Figure out a way to implement <math.h>, it doesn't seem to be supported on the arduino, or maybe I'm missing some libraries.
+	const double angle = atan2(y, sqrt(pow(x, 2) + pow(z, 2)));
+	return angle;
 }
