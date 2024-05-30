@@ -20,19 +20,36 @@ GyroScope::GyroScope(const int A4, const int A5)
 	Wire.endTransmission(true);
 }
 
-double GyroScope::angle() const
+double GyroScope::pitch() const
 {
-	const int reg_3B = 0x3B;
-	const int reg_request = 7 * 2;
+	/*const int reg_43 = 0x43;
+	const int reg_request = 6;
 	Wire.beginTransmission(MPU_ADDR);
-	Wire.write(reg_3B);
+	Wire.write(reg_43);
 	Wire.endTransmission(false);
 	Wire.requestFrom(MPU_ADDR, reg_request, true);
 
-	const int x = Wire.read() << 8 | Wire.read();
-	const int y = Wire.read() << 8 | Wire.read();
-	const int z = Wire.read() << 8 | Wire.read();
+	int current_time = millis();
+	static int previous_time = current_time;
+	int elapsed_time = current_time - previous_time;
 
-	double angle = atan2(y, sqrt(pow(x, 2) + pow(z, 2)));
-	return angle;
+	static int x_previous = 0;
+	static int y_previous = 0;
+	static int z_previous = 0;
+
+	int x_gyroscope = Wire.read() << 8 | Wire.read();
+	int y_gyroscope = Wire.read() << 8 | Wire.read();
+	int z_gyroscope = Wire.read() << 8 | Wire.read();
+
+	x_previous = ;
+	y_previous = y_previous + y_gyroscope * elapsed_time;
+	z_previous = z_previous + z_gyroscope * elapsed_time;
+
+	previous_time = current_time;
+
+	static double yaw = yaw + z_gyroscope * elapsed_time;
+	double roll = (x_previous + x_gyroscope * elapsed_time) * 0.96 +;
+	double pitch = ;
+	return pitch;*/
+	return 0;
 }

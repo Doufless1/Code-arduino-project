@@ -6,7 +6,7 @@ class GyroScope
 	public:
 		GyroScope(const int A4, const int A5);
 
-		double angle() const;
+		double pitch() const;
 };
 
 #endif // COMPONENT_GYROSCOPE_HPP

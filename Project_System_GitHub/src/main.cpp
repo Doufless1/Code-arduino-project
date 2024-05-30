@@ -4,9 +4,7 @@
 #include <Servo.h>
 
 void setup()
-{
-	Serial.begin(9600);
-}
+{}
 
 void loop()
 {
@@ -52,8 +50,11 @@ void loop()
 	else if (car.is_any_on())
 		car.change_angle(11, 30);
 
-	if (car.detects_obstacle(44, 46))
-		car.evade_obstacle(35, 30, 630);
+	if (car.detects_obstacle(45, 50))
+		car.evade_obstacle(40, 30, 750);
+
+	/*if (car.is_tilted(120))
+		*/
 
 	delay(10);
 }

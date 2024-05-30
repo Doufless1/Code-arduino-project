@@ -25,7 +25,6 @@ class Car
 		bool detects_obstacle(const int closest, const int furthest) const;
 		void evade_obstacle(const int speed, const int angle, const int time) const;
 
-
 	private:
 		Button button_;
 		Buzzer buzzer_;
