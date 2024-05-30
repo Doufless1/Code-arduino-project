@@ -10,6 +10,7 @@ Buzzer::Buzzer(const int pin) :
 
 void Buzzer::play(int note, int duration) const
 {
+	duration = 1000 / duration;
 	tone(pin_, note, duration);
 	int pause = duration * 1.30;
 	delay(pause);

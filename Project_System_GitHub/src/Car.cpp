@@ -2,15 +2,17 @@
 
 #include <Arduino.h>
 
-Car::Car(Button button, Buzzer buzzer, /*GyroScope gyroscope,*/ Infrared infrared, Motor motor, SServo servo, UltraSound ultrasound) :
+Car::Car(Button button, Buzzer buzzer, GyroScope gyroscope, Infrared infrared, Motor motor, SServo servo, UltraSound ultrasound) :
 	button_{button},
 	buzzer_{buzzer},
-	//gyroscope_{gyroscope},
+	gyroscope_{gyroscope},
 	infrared_{infrared},
 	motor_{motor},
 	servo_{servo},
 	ultrasound_{ultrasound}
-{}
+{
+	servo_.init();
+}
 
 bool Car::is_button_pressed() const
 {
@@ -46,7 +48,7 @@ void Car::play_music() const
 
 // TODO GyroScope
 
-int Car::is_middle_on() const
+int Car::is_only_middle_on() const
 {
 	return infrared_.direction() == 0b00100;
 }
@@ -65,11 +67,19 @@ const int Car::change_angle(const int slight, const int far) const
 {
 	// TODO Understand PID library and implement code.
 	const int direction = infrared_.direction();
-	const int slight_angle = !!(direction & 0b01000) * -slight + !!(direction & 0b00010) * slight;
-	const int far_angle = !!(direction & 0b10000) * -far + !!(direction & 0b00010) * far;
+	const int slight_angle = !!(direction & 0b01000) * (-slight) + !!(direction & 0b00010) * slight;
+	const int far_angle = !!(direction & 0b10000) * (-far) + !!(direction & 0b00001) * far;
 
 	const int angle = (slight != 0 && far != 0) ? (far + slight) / 2 : (far + slight);
 	servo_.angle(angle);
+
+	Serial.print(direction);
+	Serial.print(" ");
+	Serial.print(slight_angle);
+	Serial.print(" ");
+	Serial.print(far_angle);
+	Serial.print(" ");
+	Serial.println(angle);
 }
 
 void Car::move(const int speed) const

@@ -2,6 +2,7 @@
 
 #include <Arduino.h>
 #include <Wire.h>
+#include <math.h>
 
 const int MPU_ADDR = 0x68;
 
@@ -19,7 +20,7 @@ GyroScope::GyroScope(const int A4, const int A5)
 	Wire.endTransmission(true);
 }
 
-const double GyroScope::angle() const
+double GyroScope::angle() const
 {
 	const int reg_3B = 0x3B;
 	const int reg_request = 7 * 2;
@@ -32,7 +33,6 @@ const double GyroScope::angle() const
 	const int y = Wire.read() << 8 | Wire.read();
 	const int z = Wire.read() << 8 | Wire.read();
 
-	// TODO Figure out a way to implement <math.h>, it doesn't seem to be supported on the arduino, or maybe I'm missing some libraries.
-	const double angle = atan2(y, sqrt(pow(x, 2) + pow(z, 2)));
+	double angle = atan2(y, sqrt(pow(x, 2) + pow(z, 2)));
 	return angle;
 }

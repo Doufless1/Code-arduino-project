@@ -4,6 +4,9 @@
 
 SServo::SServo(const int pin) :
 	pin_{pin}
+{}
+
+void SServo::init()
 {
 	servo_.attach(pin_);
 }
