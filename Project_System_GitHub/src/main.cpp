@@ -1,8 +1,44 @@
-#include "Car.hpp"
+//#include "Car.hpp"
 
 #include <Arduino.h>
-#include <Servo.h>
+//#include <Servo.h>
 
+#include <Wire.h>
+#include <MPU9250.h>
+
+MPU9250 mpu;
+
+void setup() {
+  Serial.begin(9600);
+  Wire.begin();
+
+  // Initialize communication with the MPU-9250, and confirm it's connected
+  if (!mpu.setup(0x68)) {  // Change to 0x69 if needed
+    while (1) {
+      Serial.println("MPU connection failed. Please check your connection with `connection_check` example.");
+      delay(5000);
+    }
+  }
+}
+
+void loop() {
+  // Update the sensor data
+  if (mpu.update()) {
+    // Gyroscope values in degrees per second
+    Serial.print("Gyroscope X: ");
+    Serial.print(mpu.getGyroX());
+    Serial.print(" dps\t");
+    Serial.print("Gyroscope Y: ");
+    Serial.print(mpu.getGyroY());
+    Serial.print(" dps\t");
+    Serial.print("Gyroscope Z: ");
+    Serial.print(mpu.getGyroZ());
+    Serial.println(" dps");
+  }
+
+  delay(100);  // Update at 10 Hz
+}
+/*
 void setup()
 {}
 
@@ -53,8 +89,5 @@ void loop()
 	if (car.detects_obstacle(45, 50))
 		car.evade_obstacle(40, 30, 750);
 
-	/*if (car.is_tilted(120))
-		*/
-
 	delay(10);
-}
+}*/

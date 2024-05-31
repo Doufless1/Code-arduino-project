@@ -3,9 +3,9 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <math.h>
-
+#include <MPU9250.h>
 const int MPU_ADDR = 0x68;
-
+MPU9250 gyro;
 GyroScope::GyroScope(const int A4, const int A5)
 {
 	(void) A4;
@@ -52,4 +52,25 @@ double GyroScope::pitch() const
 	double pitch = ;
 	return pitch;*/
 	return 0;
+}
+void GyroScope::SetupGyro() const{
+    Wire.begin();
+    if(!gyro.setup(0x68)){
+        Serial.println("Failed to autodetect gyro type!");
+        while(1);
+    }
+}
+
+float GyroScope::The_Angle() const{
+
+    gyro.update();
+
+    float yDPS = (gyro.getGyroY() * 8.75) / 1000;// this is the raw valeus
+    Serial.println(" Y: ");
+    Serial.println(yDPS);
+    float yRAD = yDPS  * (3.1459 / 180);
+    Serial.println(" Y in RAD: ");
+    Serial.println(yRAD);
+
+    return yRAD;
 }

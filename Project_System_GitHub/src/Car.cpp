@@ -75,7 +75,7 @@ const int Car::change_angle(const int slight, const int far) const
 
 void Car::move(const int speed) const
 {
-	motor_.move(speed);
+	motor_.move(speed*gyroscope_.The_Angle());
 }
 
 void Car::stop() const

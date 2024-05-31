@@ -7,6 +7,8 @@ class GyroScope
 		GyroScope(const int A4, const int A5);
 
 		double pitch() const;
+        float The_Angle() const;
+        void SetupGyro() const;
 };
 
 #endif // COMPONENT_GYROSCOPE_HPP
